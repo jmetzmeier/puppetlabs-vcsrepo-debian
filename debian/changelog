@@ -1,0 +1,5 @@
+puppetlabs-vcsrepo (1.2.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #769062)
+
+ -- Jordan Metzmeier <jmetzmeier01@gmail.com>  Tue, 11 Nov 2014 08:35:28 -0600

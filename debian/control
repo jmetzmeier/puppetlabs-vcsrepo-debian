@@ -1,0 +1,29 @@
+Source: puppetlabs-vcsrepo
+Priority: extra
+Maintainer: Puppet Package Maintainers <pkg-puppet-devel@lists.alioth.debian.org>
+Uploaders: Jordan Metzmeier <jmetzmeier01@gmail.com>
+Build-Depends: debhelper (>= 9.0.0)
+Standards-Version: 3.9.6
+Section: admin
+Homepage: https://forge.puppetlabs.com/puppetlabs/vcsrepo
+Vcs-Browser: https://github.com/jmetzmeier/puppetlabs-vcsrepo-debian
+Vcs-Git: https://github.com/jmetzmeier/puppetlabs-vcsrepo-debian.git
+
+Package: puppet-module-puppetlabs-vcsrepo
+Architecture: all
+Depends: puppet-common, ${misc:Depends}
+Description: Puppet module to deploy content from a version control system
+ Puppet lets you centrally manage every important aspect of your system using a
+ cross-platform specification language that manages all the separate elements
+ normally aggregated in different files, like users, cron jobs, and hosts,
+ along with obviously discrete elements like packages,services, and files.
+ .
+ This module allows you to deploy content from a version control system. The
+ following version control systems are supported:
+ .
+  * Git
+  * Bazaar
+  * CVS
+  * Mercurial
+  * Perforce
+  * Subversion

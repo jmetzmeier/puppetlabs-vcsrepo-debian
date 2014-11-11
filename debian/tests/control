@@ -1,0 +1,3 @@
+Tests: puppet-module-puppetlabs-vcsrepo
+Depends: puppet-module-puppetlabs-vcsrepo, git
+Restrictions: needs-root

@@ -1,0 +1,49 @@
+#!/bin/bash
+
+modpath=/usr/share/puppet/modules/
+create_manifest=debian/tests/create.pp
+clone_manifest=debian/tests/clone.pp
+repo_path=/var/tmp/vcstest
+clone_path=/var/tmp/clonetest
+
+apply_manifest() {
+    if ! puppet apply --modulepath="$modpath" "$1"; then
+        echo "ERROR: failed to apply $1"
+        exit 1
+    fi
+}
+
+# apply a manifest that creates a repo with a working tree
+apply_manifest "$create_manifest"
+
+(
+    # verify that it was created properly
+    if ! cd "$repo_path" && git status >/dev/null 2>&1; then
+        echo "ERROR: applying $create_manifest did not create repo"
+        exit 1
+    fi
+
+    # Add files to the working tree so we can verify they are present
+    # in the clone
+    echo 'testing' > testfile
+    git add testfile
+    git config --global user.email "you@example.com"
+    git commit -a -m 'test commit'
+) || exit 1
+
+# apply a manifest that clones the repo previously created
+apply_manifest "$clone_manifest"
+
+(
+    if ! cd "$clone_path" && git status >/dev/null 2>&1; then
+        echo "ERROR: apply $clone_manifest did not clone repo"
+        exit 1
+    fi
+
+    if ! grep -q 'testing' testfile; then
+        echo "ERROR: cloned repo did not have expected content"
+        exit 1
+    fi
+) || exit 1
+
+exit 0

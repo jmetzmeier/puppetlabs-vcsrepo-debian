@@ -1,0 +1,2 @@
+lib usr/share/puppet/modules.available/puppetlabs-vcsrepo
+metadata.json usr/share/puppet/modules.available/puppetlabs-vcsrepo
